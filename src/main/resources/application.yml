@@ -2,6 +2,14 @@ spring:
   profiles:
     active: local
 
+# 지정한 batch job만 실행
+# --job.name=stepNextJob
+# 위와 같이 arguments로 job을 지정함
+# arguments 로 job.name이 들어오지 않으면 자동으로 NONE이 되어 아무런 job도 실행하지 않음
+# 실제 운영환경에서는 다음과 같이 실행함
+# java -jar batch-application.jar --job.name=simpleJob
+spring.batch.job.names: ${job.name:NONE}
+
 ---
 spring:
   config:
